@@ -18,10 +18,11 @@ libtcod.sys_set_fps(LIMIT_FPS)
 while not libtcod.console_is_window_closed():
 
 #sets color of foreground(text)
-libtcod.console_set_default_foreground(0, libtcod.celadon)
+  libtcod.console_set_default_foreground(0, libtcod.celadon)
 
 #sets controllable character, @ for now(placeholder)
-libtcod.console_put_char(0, 1, 1, '@', libtcod.BKGND_NONE)
-libtcod.console_flush
+  libtcod.console_put_char(0, 1, 1, '@', libtcod.BKGND_NONE)
+
+  libtcod.console_flush
 
 #space is free and adds readability for whomever is maintaing the code
