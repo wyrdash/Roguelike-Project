@@ -5,6 +5,37 @@ SCREEN_WIDTH = 80
 SCREEN_HEIGHT = 50
 LIMIT_FPS = 20
 
+#checks for keypresses
+def handle_keys():
+  global playerx, playery
+
+#movement keys, WASD
+  if libtcod.console_is_key_pressed(libtcod.TCODK_W):
+    playery -= 1
+  
+  elif libtcod.console_is_key_pressed(libtcod.TCODK_S):
+    playery += 1
+    
+  elif libtcod.console_is_key_pressed(libtcod.TCODK_A):
+    playerx -= 1
+  
+  elif libtcod.console_is_key_pressed(libtcod.TCODK_D):
+    playerx += 1
+    
+#fullscreen mode
+  key = libtcod.console_check_for_keypress()
+  if key.vk == libtcod.KEY_ENTER and key.lalt
+    #alt + enter toggles fullscreen
+    libtcod.console_set_fullscreen(not libtcod.console_is_fullscreen())
+    
+  #exit game
+  elif key.vk == libtcod.KEY_ESCAPE:
+    return True 
+  
+########################################
+#STARTUP AND MAIN LOOP BROTHER
+########################################
+
 #Assigns custom font
 libtcod.console_set_custom_font('arial10x10.png', libtcod.FONT_TYPE_GREYSCALE | libtcod.FONT_LAYOUT_TCOD)
 
@@ -14,15 +45,27 @@ libtcod.console_init_root(SCREEN_WIDTH, SCREEN_HEIGHT, 'Roguelike Project', Fals
 #limits fps (real time game, because im the best)
 libtcod.sys_set_fps(LIMIT_FPS)
 
+#places player on screen
+playerx = SCREEN_WIDTH/2
+playery = SCREEN_HEIGHT/2
+
+
 #runs logic unless window is closed
 while not libtcod.console_is_window_closed():
 
-#sets color of foreground(text)
+  #sets color of foreground(text)
   libtcod.console_set_default_foreground(0, libtcod.celadon)
 
-#sets controllable character, @ for now(placeholder)
-  libtcod.console_put_char(0, 1, 1, '@', libtcod.BKGND_NONE)
+  #places player
+  libtcod.console_put_char(0, playerx, playery, '@', libtcod.BKGND_NONE)
 
-  libtcod.console_flush
+  libtcod console_flush()
 
-#space is free and adds readability for whomever is maintaing the code
+  #makes it so the character does not have a line
+  libtcod.console_put_char(0, playerx, playery, ' ', libtcod.BKGND_NONE)
+  
+  #allows to exit game
+  exit = handle_keys()
+  if exit:
+    break
+
