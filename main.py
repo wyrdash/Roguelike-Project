@@ -12,6 +12,7 @@ def handle_keys():
 
 #fullscreen mode
   key = libtcod.console_check_for_keypress()
+  
   if key.vk == libtcod.KEY_ENTER and key.lalt:
     #alt + enter toggles fullscreen
     libtcod.console_set_fullscreen(not libtcod.console_is_fullscreen())
@@ -37,7 +38,6 @@ def handle_keys():
   
 ########################################
 #STARTUP AND MAIN LOOP BROTHER
-#
 ########################################
 
 #Assigns custom font
@@ -70,5 +70,5 @@ while not libtcod.console_is_window_closed():
   #allows to exit game
   exit = handle_keys()
   if exit:
-    break
+      break
 
