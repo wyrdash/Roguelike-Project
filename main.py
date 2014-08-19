@@ -11,7 +11,7 @@ def handle_keys():
   global playerx, playery
 
 #fullscreen mode
-  key = libtcod.console_check_for_keypress()
+  key = libtcod.console_check_for_keypress(libtcod.KEY_PRESSED)
   
   if key.vk == libtcod.KEY_ENTER and key.lalt:
     #alt + enter toggles fullscreen
@@ -22,18 +22,18 @@ def handle_keys():
     return True
   
 #movement keys, WASD
-  if libtcod.console_is_key_pressed(libtcod.TCODK_W):
-    playery -= 1
   
-  elif libtcod.console_is_key_pressed(libtcod.TCODK_S):
-    playery += 1
-    
-  elif libtcod.console_is_key_pressed(libtcod.TCODK_A):
-    playerx -= 1
-  
-  elif libtcod.console_is_key_pressed(libtcod.TCODK_D):
-    playerx += 1
-    
+
+  if key.vk == libtcod.KEY_CHAR:
+
+    if key.c == ord('w'):
+            playery -= 1
+    elif key.c == ord('s'):
+            playery += 1
+    elif key.c == ord('a'):
+            playerx -= 1
+    elif key.c == ord('d'):
+            playerx += 1
 
   
 ########################################
@@ -66,9 +66,11 @@ while not libtcod.console_is_window_closed():
 
   #makes it so the character does not have a line
   libtcod.console_put_char(0, playerx, playery, ' ', libtcod.BKGND_NONE)
-  
+
   #allows to exit game
   exit = handle_keys()
   if exit:
-      break
+    break
+
+  
 
