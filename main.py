@@ -3,12 +3,23 @@ import libtcodpy as libtcod
 #Assigns height and width. Also sets an fps limit (important for real-time)
 SCREEN_WIDTH = 80
 SCREEN_HEIGHT = 50
+
 LIMIT_FPS = 20
 
 #checks for keypresses
 def handle_keys():
   global playerx, playery
 
+#fullscreen mode
+  key = libtcod.console_check_for_keypress()
+  if key.vk == libtcod.KEY_ENTER and key.lalt:
+    #alt + enter toggles fullscreen
+    libtcod.console_set_fullscreen(not libtcod.console_is_fullscreen())
+    
+  #exit game
+  elif key.vk == libtcod.KEY_ESCAPE:
+    return True
+  
 #movement keys, WASD
   if libtcod.console_is_key_pressed(libtcod.TCODK_W):
     playery -= 1
@@ -22,18 +33,11 @@ def handle_keys():
   elif libtcod.console_is_key_pressed(libtcod.TCODK_D):
     playerx += 1
     
-#fullscreen mode
-  key = libtcod.console_check_for_keypress()
-  if key.vk == libtcod.KEY_ENTER and key.lalt
-    #alt + enter toggles fullscreen
-    libtcod.console_set_fullscreen(not libtcod.console_is_fullscreen())
-    
-  #exit game
-  elif key.vk == libtcod.KEY_ESCAPE:
-    return True 
+
   
 ########################################
 #STARTUP AND MAIN LOOP BROTHER
+#
 ########################################
 
 #Assigns custom font
@@ -48,7 +52,6 @@ libtcod.sys_set_fps(LIMIT_FPS)
 #places player on screen
 playerx = SCREEN_WIDTH/2
 playery = SCREEN_HEIGHT/2
-
 
 #runs logic unless window is closed
 while not libtcod.console_is_window_closed():
