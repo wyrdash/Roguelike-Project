@@ -62,7 +62,7 @@ while not libtcod.console_is_window_closed():
   #places player
   libtcod.console_put_char(0, playerx, playery, '@', libtcod.BKGND_NONE)
 
-  libtcod console_flush()
+  libtcod.console_flush()
 
   #makes it so the character does not have a line
   libtcod.console_put_char(0, playerx, playery, ' ', libtcod.BKGND_NONE)
