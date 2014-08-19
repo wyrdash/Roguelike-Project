@@ -60,6 +60,7 @@ while not libtcod.console_is_window_closed():
   libtcod.console_set_default_foreground(0, libtcod.celadon)
 
   #places player
+
   libtcod.console_put_char(0, playerx, playery, '@', libtcod.BKGND_NONE)
 
   libtcod.console_flush()
